@@ -1,0 +1,9 @@
+.env
+*.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+migrations/versions/*.py
+!migrations/versions/__init__.py

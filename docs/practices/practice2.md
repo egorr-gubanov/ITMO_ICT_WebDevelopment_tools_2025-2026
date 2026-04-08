@@ -153,3 +153,33 @@ return list(session.exec(stmt).all())
    - запросы через `select()` + `where()` / `join()`
    - подгрузка связей через `selectinload()`
 
+## Отдельный блок: простая учебная реализация Практики 2
+
+Дополнительно в проекте сделана отдельная учебная версия Практики 2, чтобы сохранить формат "как в методичке" без влияния на основное приложение:
+
+- `practice_2/connection.py`
+- `practice_2/models.py`
+- `practice_2/main.py`
+- `practice_2/README.md`
+
+В этой реализации:
+
+- есть подключение к PostgreSQL через SQLModel (`create_engine`, `init_db`, `get_session`);
+- таблицы описаны через `SQLModel` с `table=True`;
+- реализованы связи:
+  - one-to-many: `Project -> User`;
+  - many-to-many: `User <-> Skill` через `UserSkillLink` с полем `proficiency_level`;
+- все CRUD-эндпоинты работают через сессию БД (`session=Depends(get_session)`);
+- для получения вложенных данных используется `response_model` (`UserWithRelations`) и подгрузка связей.
+
+Запуск учебной версии:
+
+```bash
+uvicorn practice_2.main:app --reload
+```
+
+Проверка:
+
+- `GET /docs`
+- `GET /openapi.json`
+

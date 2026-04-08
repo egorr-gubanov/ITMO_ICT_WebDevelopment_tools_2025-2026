@@ -7,6 +7,4 @@ venv/
 .idea/
 .vscode/
 site/
-
-migrations/versions/*.py
-!migrations/versions/__init__.py
+.DS_Store

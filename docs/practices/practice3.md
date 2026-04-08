@@ -16,53 +16,17 @@
 
 ## 2) Какие миграции были выполнены
 
-### 2.1) Базовая миграция: пользователи/навыки/проекты
+В основной структуре проекта используется корневая папка миграций:
 
-Файл:
-`migrations/versions/d4b554615e44_initial_migration_users_skills_projects.py`
+- `migrations/env.py`
+- `migrations/script.py.mako`
+- `migrations/versions/1a2b3c4d5e6f_initial_schema.py`
 
-Он создал:
+Базовая миграция `1a2b3c4d5e6f_initial_schema.py` создаёт актуальную схему:
 
-- таблицы `project`, `skill`, `user`
-- ассоциативную таблицу `userskilllink`
-- enum `roletype` (первичный набор значений)
-
-### 2.2) Полная модель данных (добавление команд и связей)
-
-Файл:
-`migrations/versions/dcc627f340f5_full_data_model.py`
-
-В этой миграции добавлены:
-
-- таблица `team`
-- таблица `teammember` (ассоциативная сущность с дополнительным полем `member_role`)
-- колонка `project.status`
-- колонка `user.hashed_password`
-- удаление `user.project_id` (переход к связке через команды)
-
-Ключевой фрагмент:
-
-```python
-op.create_table('team', ...)
-op.create_table('teammember', ...)
-op.add_column('project', sa.Column('status', ..., server_default='open'))
-op.add_column('user', sa.Column('hashed_password', ..., server_default=''))
-op.drop_column('user', 'project_id')
-```
-
-Также были расширены значения enum `roletype`:
-
-```sql
-ALTER TYPE roletype ADD VALUE IF NOT EXISTS 'tester'
-ALTER TYPE roletype ADD VALUE IF NOT EXISTS 'devops'
-```
-
-### 2.3) Дополнение: `hashed_password` в `user`
-
-Файл:
-`migrations/versions/9c7c3cebacca_add_hashed_password_to_user.py`
-
-Эта миграция оказалась пустой (`pass`), потому что поле `hashed_password` уже появилось в предыдущей миграции `dcc627f340f5_full_data_model.py`.
+- таблицы `user`, `skill`, `project`, `team`;
+- ассоциативные таблицы `userskilllink`, `teammember`;
+- enum `roletype` со значениями ролей.
 
 ## 3) Переменные окружения (.env)
 
@@ -89,7 +53,7 @@ SECRET_KEY=super-secret-jwt-key-change-in-production-min-32-chars
 Что важно:
 
 - исключаем `.env` и `*.env` (чтобы не хранить секреты в репозитории)
-- игнорируем `migrations/versions/*.py` (кроме `migrations/versions/__init__.py`)
+- не игнорируем файлы миграций в `migrations/versions`, чтобы они хранились в git
 
 ## 5) Команды запуска миграций (как в практике)
 
@@ -109,4 +73,26 @@ alembic upgrade head
 - переменные окружения вынесены в `.env`
 - проектная структура соответствует требованиям практики
 - документация по проекту собирается через MkDocs (см. `docs/`).
+
+## Отдельный блок: простая учебная реализация Практики 3
+
+Дополнительно в проекте есть отдельная учебная версия Практики 3 (чтобы не смешивать с основной боевой структурой):
+
+- `practice_3/main.py`
+- `practice_3/connection.py`
+- `practice_3/models.py`
+- `practice_3/alembic.ini`
+- `practice_3/migrations/env.py`
+- `practice_3/migrations/script.py.mako`
+- `practice_3/migrations/versions/0001_add_level_to_userskilllink.py`
+- `practice_3/.gitignore`
+- `practice_3/.env.example`
+
+Что демонстрирует этот блок:
+
+- настройку Alembic для SQLModel (`target_metadata = SQLModel.metadata`);
+- загрузку URL базы из `.env` в `connection.py` и `migrations/env.py`;
+- передачу URL в Alembic через окружение (fallback на `alembic.ini`);
+- пример миграции с изменением схемы (`level` в `userskilllink`);
+- корректный локальный `.gitignore` для исключения `.env`.
 

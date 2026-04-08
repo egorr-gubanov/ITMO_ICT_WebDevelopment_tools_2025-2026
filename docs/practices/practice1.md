@@ -102,6 +102,37 @@ def patch_user(
 
 Механика JWT реализована в [`app/auth.py`](https://github.com/egorr-gubanov/ITMO_ICT_WebDevelopment_tools_2025-2026/blob/main/app/auth.py).
 
+### 5) Отдельный блок: простая реализация Практики 1
+
+Чтобы полностью соответствовать формату базовой Практики 1 (временная БД + Pydantic + простой CRUD), в проекте добавлена отдельная учебная копия:
+
+- `practice_1/main.py`
+- `practice_1/models.py`
+- `practice_1/README.md`
+
+В этой реализации:
+
+- используется обычный `FastAPI()` без БД и роутеров;
+- данные хранятся во временных списках в памяти (`temp_users`, `temp_projects`, `temp_skills`);
+- главная сущность `User` имеет:
+  - одиночный вложенный объект `project`;
+  - список вложенных объектов `skills`;
+- модели описаны через Pydantic в отдельном `models.py`;
+- реализованы CRUD-эндпоинты для `users`, `projects` и `skills`;
+- для POST-ответов используется `TypedDict` из `typing_extensions`.
+
+Запуск учебного варианта:
+
+```bash
+uvicorn practice_1.main:app --reload
+```
+
+Проверка:
+
+- `GET /` — базовый ответ
+- `GET /docs` — Swagger UI
+- `GET /openapi.json` — OpenAPI-схема
+
 ## Результат практики
 
 После выполнения практики у проекта есть:
