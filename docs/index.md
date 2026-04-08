@@ -1,0 +1,52 @@
+# Платформа поиска людей в команду
+
+Сервис на **FastAPI** и **SQLModel** для подбора участников в проектные команды: пользователи, навыки, проекты, команды и связи many-to-many (навыки пользователя, состав команды). Данные хранятся в **PostgreSQL**, миграции — **Alembic**.
+
+## Цели
+
+- Вести каталог пользователей с ролями и навыками.
+- Описывать проекты и наборы команд.
+- Связывать пользователей с командами с указанием роли в команде (lead, member, mentor и т.д.).
+- Предоставить **REST API** и **JWT-авторизацию** (регистрация, выдача токена, профиль `/me`).
+
+## Технологии
+
+| Компонент    | Стек                          |
+|-------------|-------------------------------|
+| API         | FastAPI, Uvicorn              |
+| ORM / модели| SQLModel, SQLAlchemy 2        |
+| БД          | PostgreSQL                    |
+| Миграции    | Alembic                       |
+| Auth        | python-jose (JWT), passlib (bcrypt) |
+| Документация интерактивная | Swagger UI (`/docs`) |
+| Документация проекта       | MkDocs Material (эта сайт) |
+
+## Репозиторий
+
+Исходный код: [ITMO_ICT_WebDevelopment_tools_2025-2026](https://github.com/egorr-gubanov/ITMO_ICT_WebDevelopment_tools_2025-2026).
+
+## Запуск API локально
+
+```bash
+uvicorn app.main:app --reload
+```
+
+Документация OpenAPI: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+
+## Документация MkDocs
+
+```bash
+mkdocs serve
+```
+
+Публикация на GitHub Pages:
+
+```bash
+mkdocs gh-deploy
+```
+
+## Практики
+
+- [Практика 1](practices/practice1.md) — базовое FastAPI приложение, аннотации и CRUD
+- [Практика 2](practices/practice2.md) — SQLModel и ORM (модели, связи, запросы)
+- [Практика 3](practices/practice3.md) — миграции Alembic, переменные окружения и структура
