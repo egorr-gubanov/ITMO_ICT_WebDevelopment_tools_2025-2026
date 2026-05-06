@@ -3,5 +3,6 @@ nav:
   - Главная: index.md
   - Задача 1: task_1.md
   - Задача 2: task_2.md
+  - Задача 2 (из lab-1): task_2_from_lab1.md
   - Сравнение: comparison.md
   - Заключение: conclusion.md

@@ -42,6 +42,25 @@ cd task_2/async_solution
 python main.py
 ```
 
+### Задача 2 (из lab-1): Заполнение БД платформы поиска команды
+
+Эта задача использует базу данных из лабораторной работы 1. Программы парсят веб-страницы и заполняют таблицы: user, skill, project, team, userskilllink, teammember.
+
+```bash
+cd task_2_(из_lab-1)/threading_solution
+python main.py
+```
+
+```bash
+cd task_2_(из_lab-1)/multiprocessing_solution
+python main.py
+```
+
+```bash
+cd task_2_(из_lab-1)/async_solution
+python main.py
+```
+
 ## Документация
 
 Для просмотра документации MkDocs:
@@ -72,10 +91,15 @@ mkdocs build
 │   ├── threading_solution/main.py
 │   ├── multiprocessing_solution/main.py
 │   └── async_solution/main.py
+├── task_2_(из_lab-1)/
+│   ├── threading_solution/main.py
+│   ├── multiprocessing_solution/main.py
+│   └── async_solution/main.py
 └── docs/
     ├── index.md
     ├── task_1.md
     ├── task_2.md
+    ├── task_2_from_lab1.md
     ├── comparison.md
     └── conclusion.md
 ```
