@@ -4,27 +4,27 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Лабораторная работа 2</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/fontawesome.min.css" rel="stylesheet">
-        <link href="css/brands.min.css" rel="stylesheet">
-        <link href="css/solid.min.css" rel="stylesheet">
-        <link href="css/v4-font-face.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Заключение - Лабораторная работа 2</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
         <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">Лабораторная работа 2</a>
+                <a class="navbar-brand" href="..">Лабораторная работа 2</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,19 +35,19 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="." class="nav-link active" aria-current="page">Главная</a>
+                                <a href=".." class="nav-link">Главная</a>
                             </li>
                             <li class="nav-item">
-                                <a href="task_1/" class="nav-link">Задача 1</a>
+                                <a href="../task_1/" class="nav-link">Задача 1</a>
                             </li>
                             <li class="nav-item">
-                                <a href="task_2/" class="nav-link">Задача 2</a>
+                                <a href="../task_2/" class="nav-link">Задача 2</a>
                             </li>
                             <li class="nav-item">
-                                <a href="comparison/" class="nav-link">Сравнение</a>
+                                <a href="../comparison/" class="nav-link">Сравнение</a>
                             </li>
                             <li class="nav-item">
-                                <a href="conclusion/" class="nav-link">Заключение</a>
+                                <a href="./" class="nav-link active" aria-current="page">Заключение</a>
                             </li>
                         </ul>
 
@@ -58,12 +58,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
+                                <a rel="prev" href="../comparison/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="task_1/" class="nav-link">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -85,21 +85,17 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#2" class="nav-link">Лабораторная работа 2. Потоки. Процессы. Асинхронность.</a>
+            <li class="nav-item" data-bs-level="1"><a href="#_1" class="nav-link">Заключение</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">Цель работы</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Краткое описание подходов</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Что было изучено</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Структура проекта</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Почему разные подходы дают разные результаты</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Задачи</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Общий вывод</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -110,46 +106,36 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="2">Лабораторная работа 2. Потоки. Процессы. Асинхронность.</h1>
-<h2 id="_1">Цель работы</h2>
-<p>Понять отличия между потоками и процессами, а также изучить асинхронность в Python. Работа с потоками, процессами и асинхронностью помогает развить навыки создания эффективных и быстродействующих программ, что важно для работы с большими объемами данных и выполнения вычислений.</p>
-<h2 id="_2">Краткое описание подходов</h2>
-<h3 id="threading">Threading (Потоки)</h3>
-<p>Потоки позволяют выполнять несколько задач concurrently в рамках одного процесса. В Python потоки управляются операционной системой и подходят для I/O-bound задач, где программа много времени ожидает ввода-вывода. Однако из-за GIL (Global Interpreter Lock) потоки в Python не могут использовать несколько ядер процессора для CPU-bound задач.</p>
-<h3 id="multiprocessing">Multiprocessing (Процессы)</h3>
-<p>Мультипроцессинг создает отдельные процессы, каждый из которых имеет свой интерпретатор Python и свою память. Это позволяет обойти ограничение GIL и использовать несколько ядер процессора. Подходит для CPU-bound задач, где требуется много вычислений.</p>
-<h3 id="async">Async (Асинхронность)</h3>
-<p>Асинхронное программирование использует один поток, но позволяет эффективно переключаться между задачами во время ожидания операций ввода-вывода. Идеально подходит для I/O-bound задач с большим количеством сетевых запросов или операций с файлами.</p>
-<h2 id="_3">Структура проекта</h2>
-<pre><code>├── mkdocs.yml
-├── requirements.txt
-├── README.md
-├── task_1/
-│   ├── threading_solution/
-│   │   └── main.py
-│   ├── multiprocessing_solution/
-│   │   └── main.py
-│   └── async_solution/
-│       └── main.py
-├── task_2/
-│   ├── threading_solution/
-│   │   └── main.py
-│   ├── multiprocessing_solution/
-│   │   └── main.py
-│   └── async_solution/
-│       └── main.py
-└── docs/
-    ├── index.md
-    ├── task_1.md
-    ├── task_2.md
-    ├── comparison.md
-    └── conclusion.md
-</code></pre>
-<h2 id="_4">Задачи</h2>
+<h1 id="_1">Заключение</h1>
+<h2 id="_2">Что было изучено</h2>
+<p>В ходе выполнения лабораторной работы были изучены:</p>
+<ol>
+<li>
+<p><strong>Threading</strong> - создание и управление потоками, синхронизация с помощью Lock, особенности работы с GIL в Python.</p>
+</li>
+<li>
+<p><strong>Multiprocessing</strong> - создание процессов с использованием Pool, особенности работы с памятью и межпроцессного взаимодействия.</p>
+</li>
+<li>
+<p><strong>Async</strong> - асинхронное программирование с asyncio, использование aiohttp для HTTP-запросов и aiosqlite для работы с базой данных.</p>
+</li>
+<li>
+<p><strong>Различия между подходами</strong> - понимание того, какие подходы лучше подходят для разных типов задач.</p>
+</li>
+</ol>
+<h2 id="_3">Почему разные подходы дают разные результаты</h2>
+<h3 id="1">Задача 1 (вычисление суммы)</h3>
+<p>Задача является CPU-bound, но благодаря использованию формулы арифметической прогрессии вычисления выполняются очень быстро. Multiprocessing имеет большие накладные расходы на создание процессов, поэтому для такой простой задачи он работает медленнее, чем threading и async.</p>
+<h3 id="2-">Задача 2 (парсинг веб-страниц)</h3>
+<p>Задача является I/O-bound, так как основное время программа ждёт ответов от серверов. Async показывает лучшие результаты, так как не создаёт дополнительные потоки или процессы и эффективно переключается между задачами. Threading также хорошо работает, так как GIL освобождается во время ожидания I/O. Multiprocessing работает корректно, но имеет избыточные накладные расходы.</p>
+<h2 id="_4">Общий вывод</h2>
+<p>Выбор подхода к параллелизму зависит от типа задачи:</p>
 <ul>
-<li><strong>Задача 1:</strong> Вычисление суммы чисел от 1 до 10000000000000 с использованием формулы арифметической прогрессии.</li>
-<li><strong>Задача 2:</strong> Параллельный парсинг веб-страниц с сохранением данных в базу SQLite.</li>
-</ul></div>
+<li><strong>Multiprocessing</strong> - лучший выбор для CPU-bound задач, где нужно использовать все ядра процессора.</li>
+<li><strong>Async</strong> - лучший выбор для I/O-bound задач с большим количеством сетевых запросов или операций с файлами.</li>
+<li><strong>Threading</strong> - хороший выбор для I/O-bound задач, когда асинхронные библиотеки недоступны.</li>
+</ul>
+<p>Понимание различий между этими подходами позволяет создавать более эффективные и производительные программы.</p></div>
             </div>
         </div>
 
@@ -157,13 +143,13 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
         <script>
-            var base_url = ".",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js"></script>
-        <script src="search/main.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -228,8 +214,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.6.1
-Build Date UTC : 2026-05-06 13:52:06.382060+00:00
--->

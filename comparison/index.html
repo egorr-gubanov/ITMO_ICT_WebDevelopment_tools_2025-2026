@@ -4,27 +4,27 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Лабораторная работа 2</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/fontawesome.min.css" rel="stylesheet">
-        <link href="css/brands.min.css" rel="stylesheet">
-        <link href="css/solid.min.css" rel="stylesheet">
-        <link href="css/v4-font-face.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Сравнение - Лабораторная работа 2</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
         <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">Лабораторная работа 2</a>
+                <a class="navbar-brand" href="..">Лабораторная работа 2</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,19 +35,19 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="." class="nav-link active" aria-current="page">Главная</a>
+                                <a href=".." class="nav-link">Главная</a>
                             </li>
                             <li class="nav-item">
-                                <a href="task_1/" class="nav-link">Задача 1</a>
+                                <a href="../task_1/" class="nav-link">Задача 1</a>
                             </li>
                             <li class="nav-item">
-                                <a href="task_2/" class="nav-link">Задача 2</a>
+                                <a href="../task_2/" class="nav-link">Задача 2</a>
                             </li>
                             <li class="nav-item">
-                                <a href="comparison/" class="nav-link">Сравнение</a>
+                                <a href="./" class="nav-link active" aria-current="page">Сравнение</a>
                             </li>
                             <li class="nav-item">
-                                <a href="conclusion/" class="nav-link">Заключение</a>
+                                <a href="../conclusion/" class="nav-link">Заключение</a>
                             </li>
                         </ul>
 
@@ -58,12 +58,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
+                                <a rel="prev" href="../task_2/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="task_1/" class="nav-link">
+                                <a rel="next" href="../conclusion/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -85,21 +85,21 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#2" class="nav-link">Лабораторная работа 2. Потоки. Процессы. Асинхронность.</a>
+            <li class="nav-item" data-bs-level="1"><a href="#_1" class="nav-link">Сравнение подходов</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">Цель работы</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Краткое описание подходов</a>
+            <li class="nav-item" data-bs-level="2"><a href="#cpu-bound-vs-io-bound" class="nav-link">CPU-bound vs I/O-bound задачи</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Структура проекта</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Сравнение подходов</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Задачи</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Таблица сравнения</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Когда что использовать</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -110,46 +110,118 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="2">Лабораторная работа 2. Потоки. Процессы. Асинхронность.</h1>
-<h2 id="_1">Цель работы</h2>
-<p>Понять отличия между потоками и процессами, а также изучить асинхронность в Python. Работа с потоками, процессами и асинхронностью помогает развить навыки создания эффективных и быстродействующих программ, что важно для работы с большими объемами данных и выполнения вычислений.</p>
-<h2 id="_2">Краткое описание подходов</h2>
-<h3 id="threading">Threading (Потоки)</h3>
-<p>Потоки позволяют выполнять несколько задач concurrently в рамках одного процесса. В Python потоки управляются операционной системой и подходят для I/O-bound задач, где программа много времени ожидает ввода-вывода. Однако из-за GIL (Global Interpreter Lock) потоки в Python не могут использовать несколько ядер процессора для CPU-bound задач.</p>
-<h3 id="multiprocessing">Multiprocessing (Процессы)</h3>
-<p>Мультипроцессинг создает отдельные процессы, каждый из которых имеет свой интерпретатор Python и свою память. Это позволяет обойти ограничение GIL и использовать несколько ядер процессора. Подходит для CPU-bound задач, где требуется много вычислений.</p>
-<h3 id="async">Async (Асинхронность)</h3>
-<p>Асинхронное программирование использует один поток, но позволяет эффективно переключаться между задачами во время ожидания операций ввода-вывода. Идеально подходит для I/O-bound задач с большим количеством сетевых запросов или операций с файлами.</p>
-<h2 id="_3">Структура проекта</h2>
-<pre><code>├── mkdocs.yml
-├── requirements.txt
-├── README.md
-├── task_1/
-│   ├── threading_solution/
-│   │   └── main.py
-│   ├── multiprocessing_solution/
-│   │   └── main.py
-│   └── async_solution/
-│       └── main.py
-├── task_2/
-│   ├── threading_solution/
-│   │   └── main.py
-│   ├── multiprocessing_solution/
-│   │   └── main.py
-│   └── async_solution/
-│       └── main.py
-└── docs/
-    ├── index.md
-    ├── task_1.md
-    ├── task_2.md
-    ├── comparison.md
-    └── conclusion.md
-</code></pre>
-<h2 id="_4">Задачи</h2>
-<ul>
-<li><strong>Задача 1:</strong> Вычисление суммы чисел от 1 до 10000000000000 с использованием формулы арифметической прогрессии.</li>
-<li><strong>Задача 2:</strong> Параллельный парсинг веб-страниц с сохранением данных в базу SQLite.</li>
-</ul></div>
+<h1 id="_1">Сравнение подходов</h1>
+<h2 id="cpu-bound-vs-io-bound">CPU-bound vs I/O-bound задачи</h2>
+<h3 id="cpu-bound">CPU-bound задачи</h3>
+<p>Задачи, которые требуют интенсивных вычислений и используют процессор на полную мощность. Примеры: математические вычисления, обработка изображений, машинное обучение.</p>
+<p>Для CPU-bound задач лучше всего подходит <strong>multiprocessing</strong>, так как он позволяет использовать несколько ядер процессора и обойти GIL.</p>
+<h3 id="io-bound">I/O-bound задачи</h3>
+<p>Задачи, которые много времени ждут ввода-вывода: сетевые запросы, чтение/запись файлов, работа с базами данных.</p>
+<p>Для I/O-bound задач хорошо подходят <strong>threading</strong> и <strong>async</strong>.</p>
+<h2 id="_2">Сравнение подходов</h2>
+<h3 id="threading">Threading</h3>
+<p><strong>Плюсы:</strong>
+- Простота реализации
+- Хорошо подходит для I/O-bound задач
+- Низкие накладные расходы на создание потоков</p>
+<p><strong>Минусы:</strong>
+- Не использует несколько ядер из-за GIL
+- Сложности с синхронизацией данных
+- Проблемы с deadlock и race condition</p>
+<h3 id="multiprocessing">Multiprocessing</h3>
+<p><strong>Плюсы:</strong>
+- Использует несколько ядер процессора
+- Обходит GIL
+- Каждый процесс имеет свою память</p>
+<p><strong>Минусы:</strong>
+- Высокие накладные расходы на создание процессов
+- Сложность обмена данными между процессами
+- Больше потребляет памяти</p>
+<h3 id="async">Async</h3>
+<p><strong>Плюсы:</strong>
+- Очень низкие накладные расходы
+- Идеально для большого количества I/O операций
+- Простой код без блокировок</p>
+<p><strong>Минусы:</strong>
+- Не подходит для CPU-bound задач
+- Требует асинхронных библиотек
+- Сложнее отлаживать</p>
+<h2 id="_3">Таблица сравнения</h2>
+<table>
+<thead>
+<tr>
+<th>Характеристика</th>
+<th>Threading</th>
+<th>Multiprocessing</th>
+<th>Async</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Использует несколько ядер</td>
+<td>Нет</td>
+<td>Да</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>Подходит для CPU-bound</td>
+<td>Нет</td>
+<td>Да</td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>Подходит для I/O-bound</td>
+<td>Да</td>
+<td>Да</td>
+<td>Да</td>
+</tr>
+<tr>
+<td>Накладные расходы</td>
+<td>Средние</td>
+<td>Высокие</td>
+<td>Низкие</td>
+</tr>
+<tr>
+<td>Сложность синхронизации</td>
+<td>Средняя</td>
+<td>Высокая</td>
+<td>Низкая</td>
+</tr>
+<tr>
+<td>Потребление памяти</td>
+<td>Среднее</td>
+<td>Высокое</td>
+<td>Низкое</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">Когда что использовать</h2>
+<table>
+<thead>
+<tr>
+<th>Тип задачи</th>
+<th>Рекомендуемый подход</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Вычисления</td>
+<td>Multiprocessing</td>
+</tr>
+<tr>
+<td>Сетевые запросы</td>
+<td>Async или Threading</td>
+</tr>
+<tr>
+<td>Работа с файлами</td>
+<td>Async или Threading</td>
+</tr>
+<tr>
+<td>Смешанные задачи</td>
+<td>Комбинация подходов</td>
+</tr>
+</tbody>
+</table></div>
             </div>
         </div>
 
@@ -157,13 +229,13 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
         <script>
-            var base_url = ".",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js"></script>
-        <script src="search/main.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -228,8 +300,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.6.1
-Build Date UTC : 2026-05-06 13:52:06.382060+00:00
--->
