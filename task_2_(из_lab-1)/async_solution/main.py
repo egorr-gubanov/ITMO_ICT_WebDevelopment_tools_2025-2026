@@ -148,13 +148,17 @@ async def parse_and_save(url, skill_name, session):
 async def main():
     urls_and_skills = [
         ("https://www.python.org", "Python"),
-        ("https://docs.python.org/3/", "Python"),
         ("https://www.djangoproject.com/", "Django"),
-        ("https://flask.palletsprojects.com/", "Flask"),
         ("https://fastapi.tiangolo.com/", "FastAPI"),
-        ("https://pypi.org/", "PyPI"),
-        ("https://www.sqlite.org/", "SQLite"),
-        ("https://example.com", "Web"),
+        ("https://react.dev/", "React"),
+        ("https://angular.dev/", "Angular"),
+        ("https://vuejs.org/", "Vue.js"),
+        ("https://nodejs.org/", "Node.js"),
+        ("https://www.postgresql.org/", "PostgreSQL"),
+        ("https://www.docker.com/", "Docker"),
+        ("https://kubernetes.io/", "Kubernetes"),
+        ("https://www.figma.com/", "Figma"),
+        ("https://www.selenium.dev/", "Selenium"),
     ]
 
     await create_database()

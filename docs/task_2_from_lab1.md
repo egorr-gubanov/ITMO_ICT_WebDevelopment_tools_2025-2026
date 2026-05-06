@@ -70,18 +70,22 @@ CREATE TABLE teammember (
 
 ## Источники данных
 
-Программы парсят следующие веб-сайты и создают соответствующие записи:
+Программы парсят следующие веб-сайты с технологиями и фреймворками:
 
 | URL | Навык |
 |-----|-------|
 | https://www.python.org | Python |
-| https://docs.python.org/3/ | Python |
 | https://www.djangoproject.com/ | Django |
-| https://flask.palletsprojects.com/ | Flask |
 | https://fastapi.tiangolo.com/ | FastAPI |
-| https://pypi.org/ | PyPI |
-| https://www.sqlite.org/ | SQLite |
-| https://example.com | Web |
+| https://react.dev/ | React |
+| https://angular.dev/ | Angular |
+| https://vuejs.org/ | Vue.js |
+| https://nodejs.org/ | Node.js |
+| https://www.postgresql.org/ | PostgreSQL |
+| https://www.docker.com/ | Docker |
+| https://kubernetes.io/ | Kubernetes |
+| https://www.figma.com/ | Figma |
+| https://www.selenium.dev/ | Selenium |
 
 ## Реализация threading
 
@@ -108,20 +112,20 @@ CREATE TABLE teammember (
 
 | Подход | Время выполнения |
 |--------|------------------|
-| Threading | ~1-2 секунд |
-| Multiprocessing | ~1-2 секунд |
-| Async | ~1-2 секунд |
+| Threading | ~2-5 секунд |
+| Multiprocessing | ~2-5 секунд |
+| Async | ~2-5 секунд |
 
 ## Результат заполнения БД
 
 После выполнения программы база данных содержит:
 
-- 8 пользователей
-- 8 навыков
-- 8 проектов
-- 8 команд
-- 8 связей пользователь-навык
-- 8 членов команд
+- 12 пользователей
+- 12 навыков
+- 12 проектов
+- 12 команд
+- 12 связей пользователь-навык
+- 12 членов команд
 
 ## Вывод
 
