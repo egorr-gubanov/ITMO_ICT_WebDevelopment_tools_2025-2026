@@ -102,6 +102,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Что парсится</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#threading" class="nav-link">Реализация threading</a>
               <ul class="nav flex-column">
               </ul>
@@ -114,15 +118,19 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Результаты времени выполнения</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_5" class="nav-link">Результаты времени выполнения</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_5" class="nav-link">Результат заполнения БД</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_6" class="nav-link">Результат заполнения БД</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_6" class="nav-link">Вывод</a>
+            <li class="nav-item" data-bs-level="2"><a href="#github" class="nav-link">Почему GitHub</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_7" class="nav-link">Вывод</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -144,7 +152,7 @@
 <li><strong>userskilllink</strong> - связь многие-ко-многим между пользователями и навыками</li>
 <li><strong>teammember</strong> - связь многие-ко-многим между пользователями и командами</li>
 </ul>
-<p>Задача состоит в том, чтобы заполнить эту базу данных данными, полученными путём парсинга веб-страниц.</p>
+<p>Задача состоит в том, чтобы заполнить эту базу данных данными, полученными путём парсинга профилей GitHub - реальной платформы для поиска разработчиков.</p>
 <h2 id="_2">Структура базы данных</h2>
 <pre><code class="language-sql">CREATE TABLE user (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -198,69 +206,89 @@ CREATE TABLE teammember (
 );
 </code></pre>
 <h2 id="_3">Источники данных</h2>
-<p>Программы парсят следующие веб-сайты с технологиями и фреймворками:</p>
+<p>Программы парсят профили GitHub известных разработчиков и организаций:</p>
 <table>
 <thead>
 <tr>
-<th>URL</th>
+<th>GitHub профиль</th>
 <th>Навык</th>
+<th>Кто</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>https://www.python.org</td>
-<td>Python</td>
-</tr>
-<tr>
-<td>https://www.djangoproject.com/</td>
-<td>Django</td>
-</tr>
-<tr>
-<td>https://fastapi.tiangolo.com/</td>
-<td>FastAPI</td>
-</tr>
-<tr>
-<td>https://react.dev/</td>
+<td>https://github.com/gaearon</td>
 <td>React</td>
+<td>Dan Abramov (создатель Redux)</td>
 </tr>
 <tr>
-<td>https://angular.dev/</td>
-<td>Angular</td>
-</tr>
-<tr>
-<td>https://vuejs.org/</td>
-<td>Vue.js</td>
-</tr>
-<tr>
-<td>https://nodejs.org/</td>
+<td>https://github.com/sindresorhus</td>
 <td>Node.js</td>
+<td>Sindre Sorhus (1000+ npm пакетов)</td>
 </tr>
 <tr>
-<td>https://www.postgresql.org/</td>
-<td>PostgreSQL</td>
+<td>https://github.com/torvalds</td>
+<td>Linux</td>
+<td>Linus Torvalds (создатель Linux)</td>
 </tr>
 <tr>
-<td>https://www.docker.com/</td>
-<td>Docker</td>
+<td>https://github.com/yyx990803</td>
+<td>Vue.js</td>
+<td>Evan You (создатель Vue.js)</td>
 </tr>
 <tr>
-<td>https://kubernetes.io/</td>
-<td>Kubernetes</td>
+<td>https://github.com/mitsuhiko</td>
+<td>Flask</td>
+<td>Armin Ronacher (создатель Flask)</td>
 </tr>
 <tr>
-<td>https://www.figma.com/</td>
-<td>Figma</td>
+<td>https://github.com/kennethreitz</td>
+<td>Python</td>
+<td>Kenneth Reitz (создатель requests)</td>
 </tr>
 <tr>
-<td>https://www.selenium.dev/</td>
-<td>Selenium</td>
+<td>https://github.com/jakevdp</td>
+<td>Data Science</td>
+<td>Jake VanderPlas (Python Data Science)</td>
+</tr>
+<tr>
+<td>https://github.com/tiangolo</td>
+<td>FastAPI</td>
+<td>Sebastián Ramírez (создатель FastAPI)</td>
+</tr>
+<tr>
+<td>https://github.com/pallets</td>
+<td>Django</td>
+<td>Pallets Projects (Flask, Click)</td>
+</tr>
+<tr>
+<td>https://github.com/psf</td>
+<td>Python</td>
+<td>Python Software Foundation</td>
+</tr>
+<tr>
+<td>https://github.com/microsoft</td>
+<td>TypeScript</td>
+<td>Microsoft (TypeScript, VS Code)</td>
+</tr>
+<tr>
+<td>https://github.com/facebook</td>
+<td>React</td>
+<td>Facebook (React, React Native)</td>
 </tr>
 </tbody>
 </table>
+<h2 id="_4">Что парсится</h2>
+<p>Для каждого профиля GitHub извлекаются:</p>
+<ol>
+<li><strong>username</strong> - имя пользователя</li>
+<li><strong>bio</strong> - описание профиля (становится bio пользователя)</li>
+<li><strong>Количество репозиториев</strong> - сохраняется в описание проекта</li>
+</ol>
 <h2 id="threading">Реализация threading</h2>
-<p>Для каждого URL создаётся отдельный поток. Каждый поток:
-1. Загружает HTML-страницу
-2. Извлекает заголовок страницы (тег <code>&lt;title&gt;</code>)
+<p>Для каждого профиля создаётся отдельный поток. Каждый поток:
+1. Загружает HTML-страницу профиля GitHub
+2. Извлекает username, bio, количество репозиториев
 3. Создаёт записи в таблицах: user, skill, project, team, userskilllink, teammember</p>
 <p>Код находится в файле <code>task_2_(из_lab-1)/threading_solution/main.py</code>.</p>
 <h2 id="multiprocessing">Реализация multiprocessing</h2>
@@ -269,7 +297,7 @@ CREATE TABLE teammember (
 <h2 id="async">Реализация async</h2>
 <p>Используются асинхронные библиотеки <code>aiohttp</code> для HTTP-запросов и <code>aiosqlite</code> для работы с SQLite.</p>
 <p>Код находится в файле <code>task_2_(из_lab-1)/async_solution/main.py</code>.</p>
-<h2 id="_4">Результаты времени выполнения</h2>
+<h2 id="_5">Результаты времени выполнения</h2>
 <table>
 <thead>
 <tr>
@@ -280,30 +308,38 @@ CREATE TABLE teammember (
 <tbody>
 <tr>
 <td>Threading</td>
-<td>~2-5 секунд</td>
+<td>~5-10 секунд</td>
 </tr>
 <tr>
 <td>Multiprocessing</td>
-<td>~2-5 секунд</td>
+<td>~5-10 секунд</td>
 </tr>
 <tr>
 <td>Async</td>
-<td>~2-5 секунд</td>
+<td>~3-5 секунд</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_5">Результат заполнения БД</h2>
+<h2 id="_6">Результат заполнения БД</h2>
 <p>После выполнения программы база данных содержит:</p>
 <ul>
-<li>12 пользователей</li>
+<li>12 пользователей (реальные разработчики)</li>
 <li>12 навыков</li>
 <li>12 проектов</li>
 <li>12 команд</li>
 <li>12 связей пользователь-навык</li>
 <li>12 членов команд</li>
 </ul>
-<h2 id="_6">Вывод</h2>
-<p>Данная задача демонстрирует применение параллельного программирования для заполнения реальной базы данных, созданной в лабораторной работе 1. Все три подхода успешно справляются с задачей, показывая похожие результаты по времени.</p></div>
+<h2 id="github">Почему GitHub</h2>
+<p>GitHub - идеальный источник данных для платформы поиска команды:</p>
+<ol>
+<li><strong>Открытые профили</strong> - не требуют авторизации</li>
+<li><strong>Реальные разработчики</strong> - актуальные данные</li>
+<li><strong>Навыки видны</strong> - по репозиториям и организациям</li>
+<li><strong>Легальный парсинг</strong> - публичные данные</li>
+</ol>
+<h2 id="_7">Вывод</h2>
+<p>Данная задача демонстрирует применение параллельного программирования для заполнения реальной базы данных реальными данными с GitHub. Async показывает лучшие результаты благодаря эффективной обработке сетевых запросов.</p></div>
             </div>
         </div>
 
