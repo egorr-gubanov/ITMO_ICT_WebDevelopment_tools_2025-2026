@@ -1,0 +1,7 @@
+site_name: "Лабораторная работа 2"
+nav:
+  - Главная: index.md
+  - Задача 1: task_1.md
+  - Задача 2: task_2.md
+  - Сравнение: comparison.md
+  - Заключение: conclusion.md
