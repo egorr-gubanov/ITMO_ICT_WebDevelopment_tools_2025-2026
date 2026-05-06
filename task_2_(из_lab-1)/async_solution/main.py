@@ -75,20 +75,31 @@ async def create_database():
         await db.commit()
 
 
-async def parse_and_save(url, skill_name, session):
+async def parse_github_profile(github_url, skill_name, session):
     try:
-        async with session.get(url, timeout=10) as response:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        }
+        
+        async with session.get(github_url, headers=headers, timeout=15) as response:
             response.raise_for_status()
             html = await response.text()
         
         soup = BeautifulSoup(html, "html.parser")
-        title_tag = soup.find("title")
-        title = title_tag.text.strip() if title_tag else "Unknown"
+        
+        username_elem = soup.find("span", class_="p-nickname")
+        username = username_elem.text.strip() if username_elem else github_url.split("/")[-1]
+        
+        bio_elem = soup.find("div", class_="p-note")
+        bio = bio_elem.text.strip()[:200] if bio_elem else ""
+        
+        repo_elem = soup.find("span", class_="Counter")
+        repo_count = repo_elem.text.strip() if repo_elem else "0"
         
         async with aiosqlite.connect("lab1_database.db") as db:
             await db.execute(
                 "INSERT INTO user (username, email, role, bio) VALUES (?, ?, ?, ?)",
-                (title[:50], url.split("//")[1].split("/")[0], "developer", f"Parsed from {url}")
+                (username, f"{username}@github.com", "developer", bio)
             )
             await db.commit()
             
@@ -97,7 +108,7 @@ async def parse_and_save(url, skill_name, session):
             
             await db.execute(
                 "INSERT INTO skill (name, description) VALUES (?, ?)",
-                (skill_name, f"Skill for {url}")
+                (skill_name, f"Skill from GitHub profile: {github_url}")
             )
             await db.commit()
             
@@ -106,7 +117,7 @@ async def parse_and_save(url, skill_name, session):
             
             await db.execute(
                 "INSERT INTO project (title, description, status, owner_id) VALUES (?, ?, ?, ?)",
-                (f"Project for {skill_name}", f"Auto-created from {url}", "open", user_id)
+                (f"Project by {username}", f"Repos: {repo_count}", "open", user_id)
             )
             await db.commit()
             
@@ -115,7 +126,7 @@ async def parse_and_save(url, skill_name, session):
             
             await db.execute(
                 "INSERT INTO team (name, description, project_id) VALUES (?, ?, ?)",
-                (f"Team {skill_name}", f"Team for {skill_name} project", project_id)
+                (f"Team {username}", f"Team led by {username}", project_id)
             )
             await db.commit()
             
@@ -124,7 +135,7 @@ async def parse_and_save(url, skill_name, session):
             
             await db.execute(
                 "INSERT INTO userskilllink (user_id, skill_id, proficiency_level) VALUES (?, ?, ?)",
-                (user_id, skill_id, "intermediate")
+                (user_id, skill_id, "expert")
             )
             
             await db.execute(
@@ -134,31 +145,31 @@ async def parse_and_save(url, skill_name, session):
             
             await db.commit()
         
-        print(f"URL: {url}")
-        print(f"User: {title[:50]}")
+        print(f"GitHub: {github_url}")
+        print(f"Username: {username}")
+        print(f"Bio: {bio[:100]}..." if len(bio) > 100 else f"Bio: {bio}")
         print(f"Skill: {skill_name}")
-        print(f"Project and Team created")
         print("-" * 50)
         return True
     except Exception as e:
-        print(f"Error parsing {url}: {e}")
+        print(f"Error parsing {github_url}: {e}")
         return False
 
 
 async def main():
-    urls_and_skills = [
-        ("https://www.python.org", "Python"),
-        ("https://www.djangoproject.com/", "Django"),
-        ("https://fastapi.tiangolo.com/", "FastAPI"),
-        ("https://react.dev/", "React"),
-        ("https://angular.dev/", "Angular"),
-        ("https://vuejs.org/", "Vue.js"),
-        ("https://nodejs.org/", "Node.js"),
-        ("https://www.postgresql.org/", "PostgreSQL"),
-        ("https://www.docker.com/", "Docker"),
-        ("https://kubernetes.io/", "Kubernetes"),
-        ("https://www.figma.com/", "Figma"),
-        ("https://www.selenium.dev/", "Selenium"),
+    github_profiles = [
+        ("https://github.com/gaearon", "React"),
+        ("https://github.com/sindresorhus", "Node.js"),
+        ("https://github.com/torvalds", "Linux"),
+        ("https://github.com/yyx990803", "Vue.js"),
+        ("https://github.com/mitsuhiko", "Flask"),
+        ("https://github.com/kennethreitz", "Python"),
+        ("https://github.com/jakevdp", "Data Science"),
+        ("https://github.com/tiangolo", "FastAPI"),
+        ("https://github.com/pallets", "Django"),
+        ("https://github.com/psf", "Python"),
+        ("https://github.com/microsoft", "TypeScript"),
+        ("https://github.com/facebook", "React"),
     ]
 
     await create_database()
@@ -166,7 +177,7 @@ async def main():
     start_time = time.perf_counter()
     
     async with aiohttp.ClientSession() as session:
-        tasks = [parse_and_save(url, skill_name, session) for url, skill_name in urls_and_skills]
+        tasks = [parse_github_profile(url, skill, session) for url, skill in github_profiles]
         results = await asyncio.gather(*tasks)
     
     end_time = time.perf_counter()

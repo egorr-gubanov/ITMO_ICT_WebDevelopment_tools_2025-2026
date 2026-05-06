@@ -77,46 +77,57 @@ def create_database():
     conn.close()
 
 
-def parse_and_save(args):
-    url, skill_name = args
+def parse_github_profile(args):
+    github_url, skill_name = args
     try:
-        response = requests.get(url, timeout=10)
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        }
+        
+        response = requests.get(github_url, headers=headers, timeout=15)
         response.raise_for_status()
         
         soup = BeautifulSoup(response.text, "html.parser")
-        title_tag = soup.find("title")
-        title = title_tag.text.strip() if title_tag else "Unknown"
+        
+        username_elem = soup.find("span", class_="p-nickname")
+        username = username_elem.text.strip() if username_elem else github_url.split("/")[-1]
+        
+        bio_elem = soup.find("div", class_="p-note")
+        bio = bio_elem.text.strip()[:200] if bio_elem else ""
+        
+        repo_elem = soup.find("span", class_="Counter")
+        repo_count = repo_elem.text.strip() if repo_elem else "0"
         
         conn = sqlite3.connect("lab1_database.db")
         cursor = conn.cursor()
         
         cursor.execute(
             "INSERT INTO user (username, email, role, bio) VALUES (?, ?, ?, ?)",
-            (title[:50], url.split("//")[1].split("/")[0], "developer", f"Parsed from {url}")
+            (username, f"{username}@github.com", "developer", bio)
         )
         user_id = cursor.lastrowid
         
         cursor.execute(
             "INSERT INTO skill (name, description) VALUES (?, ?)",
-            (skill_name, f"Skill for {url}")
+            (skill_name, f"Skill from GitHub profile: {github_url}")
         )
         skill_id = cursor.lastrowid
         
         cursor.execute(
             "INSERT INTO project (title, description, status, owner_id) VALUES (?, ?, ?, ?)",
-            (f"Project for {skill_name}", f"Auto-created from {url}", "open", user_id)
+            (f"Project by {username}", f"Repos: {repo_count}", "open", user_id)
         )
         project_id = cursor.lastrowid
         
         cursor.execute(
             "INSERT INTO team (name, description, project_id) VALUES (?, ?, ?)",
-            (f"Team {skill_name}", f"Team for {skill_name} project", project_id)
+            (f"Team {username}", f"Team led by {username}", project_id)
         )
         team_id = cursor.lastrowid
         
         cursor.execute(
             "INSERT INTO userskilllink (user_id, skill_id, proficiency_level) VALUES (?, ?, ?)",
-            (user_id, skill_id, "intermediate")
+            (user_id, skill_id, "expert")
         )
         
         cursor.execute(
@@ -127,39 +138,39 @@ def parse_and_save(args):
         conn.commit()
         conn.close()
         
-        print(f"URL: {url}")
-        print(f"User: {title[:50]}")
+        print(f"GitHub: {github_url}")
+        print(f"Username: {username}")
+        print(f"Bio: {bio[:100]}..." if len(bio) > 100 else f"Bio: {bio}")
         print(f"Skill: {skill_name}")
-        print(f"Project and Team created")
         print("-" * 50)
         return True
     except Exception as e:
-        print(f"Error parsing {url}: {e}")
+        print(f"Error parsing {github_url}: {e}")
         return False
 
 
 def main():
-    urls_and_skills = [
-        ("https://www.python.org", "Python"),
-        ("https://www.djangoproject.com/", "Django"),
-        ("https://fastapi.tiangolo.com/", "FastAPI"),
-        ("https://react.dev/", "React"),
-        ("https://angular.dev/", "Angular"),
-        ("https://vuejs.org/", "Vue.js"),
-        ("https://nodejs.org/", "Node.js"),
-        ("https://www.postgresql.org/", "PostgreSQL"),
-        ("https://www.docker.com/", "Docker"),
-        ("https://kubernetes.io/", "Kubernetes"),
-        ("https://www.figma.com/", "Figma"),
-        ("https://www.selenium.dev/", "Selenium"),
+    github_profiles = [
+        ("https://github.com/gaearon", "React"),
+        ("https://github.com/sindresorhus", "Node.js"),
+        ("https://github.com/torvalds", "Linux"),
+        ("https://github.com/yyx990803", "Vue.js"),
+        ("https://github.com/mitsuhiko", "Flask"),
+        ("https://github.com/kennethreitz", "Python"),
+        ("https://github.com/jakevdp", "Data Science"),
+        ("https://github.com/tiangolo", "FastAPI"),
+        ("https://github.com/pallets", "Django"),
+        ("https://github.com/psf", "Python"),
+        ("https://github.com/microsoft", "TypeScript"),
+        ("https://github.com/facebook", "React"),
     ]
 
     create_database()
     
     start_time = time.perf_counter()
     
-    with multiprocessing.Pool(processes=len(urls_and_skills)) as pool:
-        results = pool.map(parse_and_save, urls_and_skills)
+    with multiprocessing.Pool(processes=len(github_profiles)) as pool:
+        results = pool.map(parse_github_profile, github_profiles)
     
     end_time = time.perf_counter()
     
